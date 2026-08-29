@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  thymeleaf:
+    cache: true
+
+# Production must provide a persistent asymmetric signing key via managed infrastructure.
+# The development-only ephemeral key configuration is deliberately not active here.

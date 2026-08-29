@@ -1,0 +1,12 @@
+# Copyright (c) 2026 Bansikah. Licensed under the terms in LICENSE.
+
+.git
+.gitignore
+.idea
+.vscode
+.env
+target
+docs
+*.md
+Dockerfile
+compose.yaml

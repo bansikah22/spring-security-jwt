@@ -1,4 +1,7 @@
-# Compiled class file
+target/
+.idea/
+.DS_Store
+.env# Compiled class file
 *.class
 
 # Log file

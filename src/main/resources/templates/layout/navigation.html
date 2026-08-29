@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<body>
+<header th:fragment="authenticated-navigation" class="site-header">
+    <a th:href="@{/dashboard}" class="brand">SecurePortal</a>
+    <nav aria-label="Application navigation">
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/profile}">Profile</a>
+        <a th:href="@{/security}">Security context</a>
+        <a th:href="@{/security-lab}">Security lab</a>
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Administration</a>
+    </nav>
+    <div class="account-actions">
+        <span sec:authentication="name">User</span>
+        <form th:action="@{/logout}" method="post">
+            <button type="submit">Sign out</button>
+        </form>
+    </div>
+</header>
+</body>
+</html>

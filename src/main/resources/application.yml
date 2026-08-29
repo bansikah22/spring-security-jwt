@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: secure-portal
+  profiles:
+    default: dev
+  jpa:
+    open-in-view: false
+  thymeleaf:
+    cache: false
+  web:
+    error:
+      include-message: never
+
+server:
+  port: ${SERVER_PORT:58081}
+
+security:
+  jwt:
+    issuer: ${JWT_ISSUER:https://secure-portal.local}
+    audience: ${JWT_AUDIENCE:secure-portal-api}
+    access-token-ttl: ${JWT_ACCESS_TOKEN_TTL:PT15M}
+    refresh-token-ttl: ${JWT_REFRESH_TOKEN_TTL:P7D}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:58081}

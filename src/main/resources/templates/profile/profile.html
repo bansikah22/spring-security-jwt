@@ -1,0 +1,2 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Profile | SecurePortal</title><link rel="stylesheet" th:href="@{/css/app.css}"></head><body><div th:replace="~{layout/navigation :: authenticated-navigation}"></div><main><p class="eyebrow">Account</p><h1>Profile</h1><dl class="details"><dt>Username</dt><dd th:text="${username}">user</dd><dt>Authentication</dt><dd>HTTP session</dd></dl></main></body></html>

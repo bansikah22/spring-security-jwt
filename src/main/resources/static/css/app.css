@@ -1,0 +1,17 @@
+:root { color: #172126; background: #edf2ee; font-family: Georgia, serif; }
+body { margin: 0; min-height: 100vh; }
+main { width: min(58rem, calc(100% - 2rem)); background: #ffffff; border: 1px solid #b8c6ba; border-radius: 6px; padding: 2rem; box-sizing: border-box; margin: 4rem auto; }
+h1, h2 { color: #0d5545; margin-top: 0; } h2 { font-size: 1.15rem; }
+nav, form { display: flex; gap: .8rem; flex-wrap: wrap; margin: 1rem 0; }
+label { display: grid; gap: .35rem; width: 100%; }
+input, button, .button-link { font: inherit; padding: .55rem; }
+button, .button-link { background: #0d5545; border: 0; color: #fff; cursor: pointer; text-decoration: none; }
+a { color: #0d5545; } .error { color: #a32222; } .eyebrow { color: #52705d; font-weight: bold; text-transform: uppercase; }
+.button-link.secondary { background: #476357; } .demonstration { margin: 2rem 0; padding: 1.25rem; border: 1px solid #b8c6ba; }
+.site-header { display: flex; align-items: center; gap: 1rem; justify-content: space-between; padding: .75rem max(1rem, calc((100% - 58rem) / 2)); background: #ffffff; border-bottom: 1px solid #b8c6ba; }
+.site-header nav { margin: 0; } .brand { font-weight: bold; text-decoration: none; } .account-actions { display: flex; align-items: center; gap: .7rem; } .account-actions form { margin: 0; }
+.summary-grid, .authority-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); margin: 2rem 0; }
+.summary-grid article, .authority-grid article { border-left: 3px solid #0d5545; padding: .75rem 1rem; background: #f3f7f3; } .summary-grid strong, .summary-grid span { display: block; } .summary-grid strong { font-size: 1.3rem; }
+.details { display: grid; grid-template-columns: max-content 1fr; gap: .75rem 1.5rem; } .details dt { font-weight: bold; } .details dd { margin: 0; }
+.lab-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: 2rem 0; } .lab-grid article, .result-panel { border: 1px solid #b8c6ba; padding: 1.25rem; } .lab-grid button { margin: .25rem .25rem .25rem 0; } select { font: inherit; padding: .55rem; } .result-panel pre { max-height: 22rem; overflow: auto; background: #172126; color: #eaf3ed; padding: 1rem; }
+@media (max-width: 42rem) { .site-header { align-items: flex-start; flex-direction: column; } .site-header nav { margin: 0; } main { margin-top: 2rem; } }

@@ -1,0 +1,51 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-java@dded0888837ed1f317902acf8a20df0ad188d165 # v5.0.0
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+      - name: Install Maven 4
+        run: |
+          curl --fail --location --silent --show-error --output maven.tar.gz https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-6/binaries/apache-maven-4.0.0-rc-6-bin.tar.gz
+          curl --fail --location --silent --show-error --output maven.tar.gz.sha512 https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-6/binaries/apache-maven-4.0.0-rc-6-bin.tar.gz.sha512
+          mv maven.tar.gz apache-maven-4.0.0-rc-6-bin.tar.gz
+          sha512sum --check maven.tar.gz.sha512
+          tar --extract --file=apache-maven-4.0.0-rc-6-bin.tar.gz --directory="$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/apache-maven-4.0.0-rc-6/bin" >> "$GITHUB_PATH"
+      - name: Run tests
+        run: mvn --batch-mode --no-transfer-progress clean test
+      - name: Build container image
+        run: docker build --tag secure-portal:ci .
+      - name: Scan container image
+        uses: aquasecurity/trivy-action@b6643a29fecd19a3c03e42dd46d02c4c12e0e2c7 # v0.33.1
+        with:
+          image-ref: secure-portal:ci
+          format: table
+          exit-code: '1'
+          severity: HIGH,CRITICAL
+          ignore-unfixed: true
+
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/dependency-review-action@5638b39c36d266f2e2db96cc06e6cc9582c221cb # v4.7.3
