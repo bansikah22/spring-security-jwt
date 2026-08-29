@@ -13,12 +13,12 @@ RUN apt-get update \
     && apt-get install --no-install-recommends --yes curl ca-certificates \
     && curl --fail --location --silent --show-error --output "apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
         "https://dlcdn.apache.org/maven/maven-4/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
-    && curl --fail --location --silent --show-error --output "apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512" \
-        "https://dlcdn.apache.org/maven/maven-4/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512" \
-    && sha512sum --check "apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512" \
+    && expected_checksum="$(curl --fail --location --silent --show-error "https://dlcdn.apache.org/maven/maven-4/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512")" \
+    && actual_checksum="$(sha512sum "apache-maven-${MAVEN_VERSION}-bin.tar.gz" | awk '{print $1}')" \
+    && test "$actual_checksum" = "$expected_checksum" \
     && tar --extract --file="apache-maven-${MAVEN_VERSION}-bin.tar.gz" --directory=/opt \
     && ln --symbolic "/opt/apache-maven-${MAVEN_VERSION}/bin/mvn" /usr/local/bin/mvn \
-    && rm "apache-maven-${MAVEN_VERSION}-bin.tar.gz" "apache-maven-${MAVEN_VERSION}-bin.tar.gz.sha512" \
+    && rm "apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
     && rm --recursive --force /var/lib/apt/lists/*
 
 # Copy the POM first so dependency downloads remain cached until dependencies change.

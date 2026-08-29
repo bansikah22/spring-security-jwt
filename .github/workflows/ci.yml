@@ -21,10 +21,12 @@ jobs:
           cache: maven
       - name: Install Maven 4
         run: |
-          curl --fail --location --silent --show-error --output maven.tar.gz https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-6/binaries/apache-maven-4.0.0-rc-6-bin.tar.gz
-          curl --fail --location --silent --show-error --output maven.tar.gz.sha512 https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-6/binaries/apache-maven-4.0.0-rc-6-bin.tar.gz.sha512
-          mv maven.tar.gz apache-maven-4.0.0-rc-6-bin.tar.gz
-          sha512sum --check maven.tar.gz.sha512
+          archive=apache-maven-4.0.0-rc-6-bin.tar.gz
+          base_url=https://dlcdn.apache.org/maven/maven-4/4.0.0-rc-6/binaries
+          curl --fail --location --silent --show-error --output "$archive" "$base_url/$archive"
+          expected_checksum=$(curl --fail --location --silent --show-error "$base_url/$archive.sha512")
+          actual_checksum=$(sha512sum "$archive" | awk '{print $1}')
+          test "$actual_checksum" = "$expected_checksum"
           tar --extract --file=apache-maven-4.0.0-rc-6-bin.tar.gz --directory="$RUNNER_TEMP"
           echo "$RUNNER_TEMP/apache-maven-4.0.0-rc-6/bin" >> "$GITHUB_PATH"
       - name: Run tests
