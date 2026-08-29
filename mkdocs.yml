@@ -30,3 +30,4 @@ nav:
   - Security Flows: security-flows.md
   - Implementation Blueprint: idea.md
   - Kubernetes: kubernetes.md
+  - Releasing: releasing.md

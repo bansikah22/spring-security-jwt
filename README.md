@@ -8,6 +8,8 @@ Read the [architecture](docs/architecture.md), [security flows](docs/security-fl
 
 The published learning guide is deployed through GitHub Pages at https://bansikah22.github.io/spring-security-jwt/ after the Pages workflow has run and GitHub Pages is enabled in repository settings.
 
+Version tags publish an attested container image to GHCR. See the [release guide](docs/releasing.md) for the tagging and image-reference policy.
+
 ## Run locally
 
 Start PostgreSQL:
