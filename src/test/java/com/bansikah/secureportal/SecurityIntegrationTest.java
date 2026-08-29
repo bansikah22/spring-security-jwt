@@ -225,6 +225,16 @@ class SecurityIntegrationTest {
             }
 
             @Test
+            void managerCanGenerateReportsButCannotAccessAdminApi() throws Exception {
+            mvc.perform(get("/api/security/reports").with(jwt()
+                    .authorities(new SimpleGrantedAuthority("REPORT_GENERATE"))))
+                .andExpect(status().isOk());
+            mvc.perform(get("/api/admin").with(jwt()
+                    .authorities(new SimpleGrantedAuthority("REPORT_GENERATE"))))
+                .andExpect(status().isForbidden());
+            }
+
+            @Test
             void apiCorsPolicyAllowsOnlyConfiguredOrigin() throws Exception {
             mvc.perform(options("/api/security/me").header("Origin", "http://localhost:58081")
                     .header("Access-Control-Request-Method", "GET"))

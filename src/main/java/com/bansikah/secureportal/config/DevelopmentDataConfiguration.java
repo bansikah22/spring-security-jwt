@@ -19,6 +19,7 @@ class DevelopmentDataConfiguration {
         return arguments -> {
             if (users.count() == 0) {
                 users.save(new UserAccount("user", "user@secureportal.local", passwordEncoder.encode("change-me-user"), Set.of(Role.USER)));
+                users.save(new UserAccount("manager", "manager@secureportal.local", passwordEncoder.encode("change-me-manager"), Set.of(Role.MANAGER)));
                 users.save(new UserAccount("admin", "admin@secureportal.local", passwordEncoder.encode("change-me-admin"), Set.of(Role.ADMIN)));
             }
         };

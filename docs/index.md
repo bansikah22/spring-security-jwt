@@ -17,7 +17,7 @@ SecurePortal is a runnable Spring Boot 4 and Java 25 demonstration of two comple
 | Account | Password | Purpose |
 | --- | --- | --- |
 | `user` | `change-me-user` | Demonstrates permission denial for report generation and administration. |
-| `manager` | Configure locally if needed | Demonstrates report generation permission without administration permission. |
+| `manager` | `change-me-manager` | Demonstrates report generation permission without administration permission. |
 | `admin` | `change-me-admin` | Demonstrates role-based web administration and permission-based API administration. |
 
 Development credentials are intentionally local-only demonstration data. Never enable them in a deployed environment.

@@ -27,6 +27,9 @@ markdown_extensions:
 nav:
   - Overview: index.md
   - Architecture: architecture.md
+  - Browser Security: browser-security.md
+  - JWT and API Security: jwt-guide.md
+  - Testing Security: testing-guide.md
   - Security Flows: security-flows.md
   - Implementation Blueprint: idea.md
   - Kubernetes: kubernetes.md
