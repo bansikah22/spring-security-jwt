@@ -53,7 +53,7 @@ public class SecurityConfiguration {
     @Order(2)
     SecurityFilterChain webSecurity(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/login", "/access-denied", "/css/**", "/js/**", "/favicon.ico").permitAll()
+                        .requestMatchers("/", "/login", "/access-denied", "/css/**", "/js/**", "/favicon.ico", "/actuator/health/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/dashboard", "/profile", "/security", "/security-lab").authenticated()
                         .anyRequest().denyAll())

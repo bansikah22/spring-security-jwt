@@ -5,5 +5,8 @@ spring:
   thymeleaf:
     cache: true
 
-# Production must provide a persistent asymmetric signing key via managed infrastructure.
-# The development-only ephemeral key configuration is deliberately not active here.
+security:
+  jwt:
+    keys:
+      public-key-location: ${JWT_PUBLIC_KEY_LOCATION:file:/var/run/secrets/secure-portal/public.pem}
+      private-key-location: ${JWT_PRIVATE_KEY_LOCATION:file:/var/run/secrets/secure-portal/private.pem}

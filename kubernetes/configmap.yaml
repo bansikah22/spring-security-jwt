@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: secure-portal-config
+  labels:
+    app.kubernetes.io/name: secure-portal
+data:
+  SPRING_PROFILES_ACTIVE: prod
+  SERVER_PORT: "8080"
+  JWT_ISSUER: https://portal.example.com
+  JWT_AUDIENCE: secure-portal-api
+  JWT_ACCESS_TOKEN_TTL: PT15M
+  JWT_REFRESH_TOKEN_TTL: P7D
+  CORS_ALLOWED_ORIGINS: https://portal.example.com
+  DATABASE_URL: jdbc:postgresql://postgres.default.svc.cluster.local:5432/secure_portal
+  DATABASE_USERNAME: secure_portal

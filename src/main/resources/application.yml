@@ -11,6 +11,17 @@ spring:
     error:
       include-message: never
 
+  management:
+    endpoint:
+      health:
+        probes:
+          enabled: true
+        show-details: never
+    endpoints:
+      web:
+        exposure:
+          include: health
+
 server:
   port: ${SERVER_PORT:58081}
 

@@ -4,6 +4,8 @@ Copyright (c) 2026 Bansikah. Licensed under the terms in [LICENSE](LICENSE).
 
 A Spring Boot 4 and Java 25 demonstration of session-based browser security and JWT bearer authentication. Application packages use `com.bansikah.secureportal`.
 
+Read the [architecture](docs/architecture.md), [security flows](docs/security-flows.md), and [Kubernetes deployment guide](kubernetes/README.md) for the implementation details.
+
 ## Run locally
 
 Start PostgreSQL:
@@ -70,6 +72,14 @@ JWTs are signed with an ephemeral RSA key in the `dev` and `test` profiles. They
 Refresh tokens are random credentials stored only as SHA-256 hashes. Refreshing revokes the presented token and issues a replacement, providing rotation and revocation without a JWT denylist. Access tokens stay short-lived.
 
 The `prod` profile intentionally has no generated signing key. Configure a persistent, externally managed asymmetric key pair before deploying it; never commit a private key, database password, or refresh token.
+
+## Kubernetes
+
+The [Kubernetes manifests](kubernetes) deploy non-root replicas with a read-only filesystem, resource constraints, Actuator health probes, and an HTTPS Ingress. They reference externally provisioned database and JWT-key secrets. Validate the manifests locally with:
+
+```shell
+kubectl apply --dry-run=client -f kubernetes
+```
 
 ## Tests
 
