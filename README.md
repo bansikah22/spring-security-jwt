@@ -6,7 +6,7 @@ A Spring Boot 4 and Java 25 demonstration of session-based browser security and 
 
 Read the [architecture](docs/architecture.md), [security flows](docs/security-flows.md), and [Kubernetes deployment guide](kubernetes/README.md) for the implementation details.
 
-The published learning guide is deployed through GitHub Pages at https://bansikah22.github.io/spring-security-jwt/ after the Pages workflow has run and GitHub Pages is enabled in repository settings.
+The published learning guide is deployed through GitHub Pages at https://bansikah22.github.io/spring-security-jwt/. Before its first run, a repository administrator must set **Settings -> Pages -> Source -> GitHub Actions**. GitHub does not allow a workflow's `GITHUB_TOKEN` to create this repository-level Pages setting.
 
 Version tags publish an attested container image to GHCR. See the [release guide](docs/releasing.md) for the tagging and image-reference policy.
 
