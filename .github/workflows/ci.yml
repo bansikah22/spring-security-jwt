@@ -34,9 +34,10 @@ jobs:
       - name: Build container image
         run: docker build --tag secure-portal:ci .
       - name: Scan container image
-        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # v0.33.1
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           image-ref: secure-portal:ci
+          version: v0.74.0
           format: table
           exit-code: '1'
           severity: HIGH,CRITICAL
