@@ -1,0 +1,32 @@
+site_name: SecurePortal Learning Guide
+site_description: Spring Security sessions, JWTs, authorization, and production deployment
+site_url: https://bansikah22.github.io/spring-security-jwt/
+repo_url: https://github.com/bansikah22/spring-security-jwt
+repo_name: bansikah22/spring-security-jwt
+copyright: Copyright (c) 2026 Noel Bansikah. MIT License.
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.footer
+    - navigation.sections
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: teal
+      accent: green
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+
+nav:
+  - Overview: index.md
+  - Architecture: architecture.md
+  - Security Flows: security-flows.md
+  - Implementation Blueprint: idea.md
+  - Kubernetes: kubernetes.md

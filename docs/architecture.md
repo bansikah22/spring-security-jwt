@@ -28,7 +28,7 @@ The Security Context page intentionally shows application roles and permissions 
 
 ## Evidence
 
-The captured UI scenarios are included in [images](images):
+The captured UI scenarios are included below:
 
 - [Normal user dashboard](images/userportal.png)
 - [Normal user access denied](images/adminaccessdenieled.png)

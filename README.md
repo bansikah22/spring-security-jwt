@@ -6,6 +6,8 @@ A Spring Boot 4 and Java 25 demonstration of session-based browser security and 
 
 Read the [architecture](docs/architecture.md), [security flows](docs/security-flows.md), and [Kubernetes deployment guide](kubernetes/README.md) for the implementation details.
 
+The published learning guide is deployed through GitHub Pages at https://bansikah22.github.io/spring-security-jwt/ after the Pages workflow has run and GitHub Pages is enabled in repository settings.
+
 ## Run locally
 
 Start PostgreSQL:
