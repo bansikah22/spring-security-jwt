@@ -30,7 +30,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
-import org.springframework.security.oauth2.jwt.JwtValidationException;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
@@ -201,7 +200,7 @@ class SecurityIntegrationTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse().getContentAsString();
             JsonNode accessToken = objectMapper.readTree(response).get("accessToken");
-            mvc.perform(get("/api/security/me").header("Authorization", "Bearer " + accessToken.asText()))
+            mvc.perform(get("/api/security/me").header("Authorization", "Bearer " + accessToken.stringValue()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.roles").value(org.hamcrest.Matchers.hasItem(expectedRole)))
                 .andExpect(jsonPath("$.permissions").value(org.hamcrest.Matchers.hasItem(expectedPermission)));
@@ -232,7 +231,7 @@ class SecurityIntegrationTest {
             String initialResponse = mvc.perform(post("/api/auth/token").contentType(MediaType.APPLICATION_JSON)
                     .content("{\"username\":\"user\",\"password\":\"password\"}"))
                 .andReturn().getResponse().getContentAsString();
-            String refreshToken = objectMapper.readTree(initialResponse).get("refreshToken").asText();
+            String refreshToken = objectMapper.readTree(initialResponse).get("refreshToken").stringValue();
             String request = "{\"refreshToken\":\"" + refreshToken + "\"}";
             mvc.perform(post("/api/auth/refresh").contentType(MediaType.APPLICATION_JSON).content(request))
                 .andExpect(status().isOk())
