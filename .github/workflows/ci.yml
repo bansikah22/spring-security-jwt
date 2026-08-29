@@ -32,7 +32,7 @@ jobs:
       - name: Build container image
         run: docker build --tag secure-portal:ci .
       - name: Scan container image
-        uses: aquasecurity/trivy-action@b6643a29fecd19a3c03e42dd46d02c4c12e0e2c7 # v0.33.1
+        uses: aquasecurity/trivy-action@b6643a29fecd7f34b3597bc6acb0a98b03d33ff8 # v0.33.1
         with:
           image-ref: secure-portal:ci
           format: table
