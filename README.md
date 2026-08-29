@@ -75,7 +75,7 @@ The `prod` profile intentionally has no generated signing key. Configure a persi
 
 ## Kubernetes
 
-The [Kubernetes manifests](kubernetes) deploy non-root replicas with a read-only filesystem, resource constraints, Actuator health probes, and an HTTPS Ingress. They reference externally provisioned database and JWT-key secrets. Validate the manifests locally with:
+The [Kubernetes manifests](kubernetes) deploy non-root replicas with a read-only filesystem, resource constraints, Actuator health probes, and an HTTPS Ingress. They support an existing managed database through `DATABASE_URL`, or an optional pinned PostgreSQL StatefulSet for development and small non-critical clusters. They reference externally provisioned database and JWT-key secrets. Validate the manifests locally with:
 
 ```shell
 kubectl apply --dry-run=client -f kubernetes

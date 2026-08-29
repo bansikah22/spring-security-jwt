@@ -21,7 +21,17 @@ Do not apply `secret.example.yaml` and never commit real values. Create `secure-
 
 The application mounts the keys read-only and reads them through `JWT_PUBLIC_KEY_LOCATION` and `JWT_PRIVATE_KEY_LOCATION`. The production profile has no ephemeral signing key.
 
-## Apply
+## Database choices
+
+`postgresql.yaml` is an optional pinned PostgreSQL 17 StatefulSet with a 10 GiB persistent volume claim and health probes. It is suitable for local, development, and small non-critical clusters:
+
+```shell
+kubectl apply -f kubernetes/postgresql.yaml
+```
+
+For production, prefer an existing managed PostgreSQL service. Do not apply `postgresql.yaml`; instead, change `DATABASE_URL` in `configmap.yaml` to the existing service endpoint and keep `DATABASE_USERNAME` and the `database-password` secret aligned with that database.
+
+## Apply application manifests
 
 ```shell
 kubectl apply -f kubernetes/configmap.yaml
